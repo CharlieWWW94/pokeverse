@@ -1,10 +1,11 @@
 import React from 'react';
 
-function PokemonCard({ url, name }) {
-
+function PokemonCard(props) {
+  const singlePokemon = props.pokemonObject;
   return (
     <div>
-        pokemon card
+        <h3>{singlePokemon.name}</h3>
+        <p>{singlePokemon.url}</p>
     </div>
   );
 }
