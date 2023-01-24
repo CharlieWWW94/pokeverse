@@ -25,7 +25,7 @@ function PokemonCard(props) {
   })
   
   if (singlePokemonInfo) {
-  return (``
+  return (
     <Card>
       <Card.Img src={singlePokemonInfo.sprites.front_default}></Card.Img>
       <Link to={`/${singlePokemonInfo.name}`}>
