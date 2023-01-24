@@ -1,7 +1,7 @@
 import {React, useState, useEffect} from 'react';
 import { Navigation } from './components/Navigation';
 import { PokemonCard } from './components/PokemonCard';
-
+import { Row, Col } from 'react-bootstrap';
 import { Form, InputGroup } from 'react-bootstrap';
 
 const LIMIT = 150;
@@ -11,6 +11,7 @@ const getPokemon = async () => {
   try {
   const res = await fetch(pokeApi);
   const data = await res.json();
+  console.log(data)
   return data.results;
   } catch (error) {
     throw new Error(error);
@@ -25,6 +26,7 @@ function App() {
   useEffect(() => {
   getPokemon().then(items => {
     setPokemon(items);
+    setPokemonToDisplay(items)
   }).catch((error) => {
     throw new Error(error);
   });
@@ -50,9 +52,15 @@ function App() {
         />
       </InputGroup>
       <h1>Pokemon should appear here</h1>
+      <Row className='g-4'>
       {pokemonToDisplay.map((item, index) => {
-        return <PokemonCard key={index} pokemonObject={item}/>
+        return (
+        <Col xs={3}>
+          <PokemonCard key={index} pokemonObject={item}/>
+          </Col>
+        )
       })}
+      </Row>
     </div>
   );
 }
