@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const getSinglePokemon = async (url) => {
 
@@ -27,7 +28,9 @@ function PokemonCard(props) {
   return (
     <Card>
       <Card.Img src={singlePokemonInfo.sprites.front_default}></Card.Img>
-      <Card.Title>{singlePokemonInfo.name}</Card.Title>
+      <Link to={`/${singlePokemonInfo.name}`}>
+        <Card.Title>{singlePokemonInfo.name}</Card.Title>
+      </Link>
       {singlePokemonInfo.abilities.map((ability) => {
         return (<Card.Text>{ability.ability.name}</Card.Text>)
       })}
